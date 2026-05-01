@@ -14,7 +14,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Build Image
-        run: docker build -t $IMAGE_NAME .
+        run: docker-build -t $IMAGE_NAME .
       - name: List Image
         run: docker images
       - name: Login to Docker Registry
@@ -23,7 +23,7 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
       - name: Push Image
-        run: docker push $IMAGE_NAME
+        run: docker-push $IMAGE_NAME
 
   deploy-2048:
     needs: build-push-image
@@ -32,6 +32,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: stop and remove existing container
-        run: docker compose down --rmi all
+        run: docker-compose down
       - name: start container
-        run: docker compose up -d
+        run: docker-compose up -d
