@@ -19,9 +19,6 @@ jobs:
       - name: Build Image
         run: docker build -t $IMAGE_NAME .
 
-      - name: List Image
-        run: docker images
-
       - name: Login to Docker Registry
         uses: docker/login-action@v3
         with:
@@ -35,7 +32,7 @@ jobs:
     needs: build-push-image
     runs-on: self-hosted
     steps:
-      - name: Stop container (if exists)
+      - name: Stop container
         run: docker rm -f game-2048 || true
 
       - name: Run container
