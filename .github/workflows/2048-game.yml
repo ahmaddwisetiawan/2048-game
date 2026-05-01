@@ -1,13 +1,13 @@
 name: Build, Push and Deploy Docker Image
 run-name: Build, Push and Deploy Image
 
-on:
+on: 
   push:
     branches:
       - main
 
 env:
-  IMAGE_NAME: "${{ secrets.DOCKER_USER }}/2048-ahmaddwisetiawan:latest"
+  IMAGE_NAME: "${{ secrets.DOCKER_USER }}/2048-username_adinusa:latest"
 
 jobs:
   build-push-image:
@@ -39,5 +39,4 @@ jobs:
         run: docker rm -f game-2048 || true
 
       - name: Run container
-        run: |
-          docker run -d -p 80:80 --name game-2048 $IMAGE_NAME
+        run: docker run -d -p 80:80 --name game-2048 $IMAGE_NAME
